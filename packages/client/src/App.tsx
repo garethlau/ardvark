@@ -7,6 +7,9 @@ import {
 } from "@apollo/client";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+import { AppProvider } from "@shopify/polaris";
+import enTranslations from "@shopify/polaris/locales/en.json";
+
 import Product from "./pages/Product";
 import Explore from "./pages/Explore";
 
@@ -41,15 +44,17 @@ const client = new ApolloClient({
 const App: React.FC<{}> = () => {
   return (
     <ApolloProvider client={client}>
-      <Router>
-        <Switch>
-          <Route path="/product/:productId" component={Product} />
-          <Route path="/explore" component={Explore} />
-          <Route>
-            <div>Home</div>
-          </Route>
-        </Switch>
-      </Router>
+      <AppProvider i18n={enTranslations}>
+        <Router>
+          <Switch>
+            <Route path="/product/:productId" component={Product} />
+            <Route path="/explore" component={Explore} />
+            <Route>
+              <div>Home</div>
+            </Route>
+          </Switch>
+        </Router>
+      </AppProvider>
     </ApolloProvider>
   );
 };
