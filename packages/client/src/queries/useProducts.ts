@@ -7,20 +7,20 @@ interface Product {
 }
 
 interface ProductsData {
-  productsConnection: {
+  products: {
     products: Product[];
     hasMore: boolean;
   };
 }
 
 interface ProductsVars {
-  offset: number;
+  skip: number;
   limit: number;
 }
 
 const GET_PRODUCTS = gql`
   query GetProducts($limit: Int, $skip: Int) {
-    productsConnection(limit: $limit, skip: $skip) {
+    products(limit: $limit, skip: $skip) {
       hasMore
       products {
         id
@@ -33,7 +33,7 @@ const GET_PRODUCTS = gql`
 export default function useProducts() {
   return useQuery<ProductsData, ProductsVars>(GET_PRODUCTS, {
     variables: {
-      offset: 0,
+      skip: 0,
       limit: 10,
     },
   });
