@@ -19,13 +19,13 @@ export const typeDefs = gql`
     value: String!
   }
 
-  type ProductConnection {
+  type ProductsConnection {
     hasMore: Boolean!
     products: [Product]!
   }
 
   type Query {
-    productsConnection(
+    products(
       """
       The number of results to show. Must be >= 1. Default = 20.
       """
@@ -35,7 +35,7 @@ export const typeDefs = gql`
       The number of results to skip. Default = 0.
       """
       skip: Int
-    ): ProductConnection!
+    ): ProductsConnection!
     product(id: String!): Product!
   }
 `;
