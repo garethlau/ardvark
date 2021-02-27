@@ -18,7 +18,7 @@ const resolvers: IResolvers = {
         return result.records[0].get("product").properties;
       });
     },
-    productsConnection: async (parent, { limit = 20, skip = 0 }, context) => {
+    products: async (parent, { limit = 20, skip = 0 }, context) => {
       const session: Session = context.driver.session();
       const query = [
         "MATCH (product:Product) RETURN product SKIP $skip LIMIT $limit",
