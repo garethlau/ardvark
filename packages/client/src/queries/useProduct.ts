@@ -9,7 +9,7 @@ export interface Product {
   manufacturer: {
     value: String;
   };
-  similar: { id: string; name: string }[];
+  similar: { id: string; name: string; description: string }[];
 }
 
 interface ProductData {
@@ -36,6 +36,7 @@ const GET_PRODUCT = gql`
       similar {
         id
         name
+        description
       }
     }
   }
