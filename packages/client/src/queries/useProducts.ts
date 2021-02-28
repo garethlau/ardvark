@@ -25,6 +25,7 @@ const GET_PRODUCTS = gql`
       products {
         id
         name
+        description
       }
     }
   }
