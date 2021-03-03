@@ -12,6 +12,7 @@ import enTranslations from "@shopify/polaris/locales/en.json";
 
 import Product from "./pages/Product";
 import Explore from "./pages/Explore";
+import Categories from "./pages/Categories";
 
 const client = new ApolloClient({
   uri: process.env.REACT_APP_GRAPHQL_URI,
@@ -49,6 +50,7 @@ const App: React.FC<{}> = () => {
           <Switch>
             <Route path="/product/:productId" component={Product} />
             <Route path="/explore" component={Explore} />
+            <Route path="/categories" component={Categories} />
             <Route>
               <div>Home</div>
             </Route>

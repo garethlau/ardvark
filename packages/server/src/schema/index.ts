@@ -17,6 +17,7 @@ export const typeDefs = gql`
 
   type Category {
     value: String!
+    products: [Product]
   }
 
   type ProductsConnection {
@@ -37,6 +38,9 @@ export const typeDefs = gql`
       skip: Int
     ): ProductsConnection!
     product(id: String!): Product!
+    productsInCategories(names: [String]!): [Product]!
+    categories: [Category]!
+    category(value: String!): Category!
   }
 `;
 
