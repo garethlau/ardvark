@@ -9,7 +9,7 @@ import {
   Heading,
 } from "@shopify/polaris";
 import { OptionDescriptor } from "@shopify/polaris/dist/types/latest/src/components/OptionList/OptionList";
-import ProductCard from "../components/ProductCard";
+import RecommendedProducts from "./RecommendedProducts";
 
 interface Data {
   categories: { value: string }[];
@@ -22,41 +22,6 @@ const GET_CATEGORIES = gql`
     }
   }
 `;
-
-const GET_FILTERED_PRODUCTS = gql`
-  query GetProductsInCategories($categories: [String]!) {
-    productsInCategories(names: $categories) {
-      id
-      name
-      description
-    }
-  }
-`;
-
-const RecommendedProducts: React.FC<{
-  categories: string[];
-}> = ({ categories }) => {
-  const { data } = useQuery<{
-    productsInCategories: { id: string; name: string; description: string }[];
-  }>(GET_FILTERED_PRODUCTS, {
-    variables: {
-      categories,
-    },
-  });
-
-  return (
-    <div>
-      {data?.productsInCategories.map((product) => (
-        <ProductCard
-          key={product.id}
-          id={product.id}
-          name={product.name}
-          description={product.description}
-        />
-      ))}
-    </div>
-  );
-};
 
 const Categories: React.FC<{}> = () => {
   const { data, loading } = useQuery<Data>(GET_CATEGORIES);
