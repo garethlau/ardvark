@@ -10,6 +10,7 @@ import {
   Card,
 } from "@shopify/polaris";
 import ProductCard from "../components/ProductCard";
+import Loader from "../components/Loader";
 
 const Root = styled.div`
   width: 100%;
@@ -29,7 +30,9 @@ const Product: React.FC<{}> = () => {
   const { productId } = useParams<Record<string, string>>();
   const { data, loading } = useProduct(productId);
 
-  if (loading) return <div>Loading</div>;
+  if (loading) {
+    return <Loader full />;
+  }
   return (
     <Root>
       <Content>
