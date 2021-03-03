@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
 import { Card, Collapsible, Stack, Button } from "@shopify/polaris";
 
 const ProductCard: React.FC<{
