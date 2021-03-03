@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import useProducts from "../queries/useProducts";
 import ProductCard from "../components/ProductCard";
-import { Button, Spinner } from "@shopify/polaris";
+import { Button } from "@shopify/polaris";
 import styled from "styled-components";
+import Loader from "../components/Loader";
 
 const Root = styled.div`
   width: 100%;
@@ -35,11 +36,7 @@ const Explore: React.FC<{}> = () => {
   }
 
   if (loading) {
-    return (
-      <div>
-        <Spinner accessibilityLabel="Spinner example" size="large" />
-      </div>
-    );
+    return <Loader full />;
   } else if (error) {
     return (
       <div>
