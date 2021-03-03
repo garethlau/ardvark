@@ -1,0 +1,30 @@
+type Product {
+  id: String!
+  name: String!
+  description: String!
+  price: String!
+  categories: [Category]
+  manufacturer: Manufacturer
+  similar: [Product]
+}
+
+type ProductsConnection {
+  hasMore: Boolean!
+  products: [Product]!
+}
+
+type Query {
+  products(
+    """
+    The number of results to show. Must be >= 1. Default = 20.
+    """
+    limit: Int
+
+    """
+    The number of results to skip. Default = 0.
+    """
+    skip: Int
+  ): ProductsConnection!
+  product(id: String!): Product!
+  productsInCategories(names: [String]!): [Product]!
+}

@@ -1,0 +1,13 @@
+type Manufacturer {
+  value: String!
+}
+
+type Category {
+  value: String!
+  products: [Product]
+}
+
+type Query {
+  categories: [Category]!
+  category(value: String!): Category!
+}

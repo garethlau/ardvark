@@ -1,13 +1,14 @@
 {
-  "name": "@advark/server",
+  "name": "@ardvark/server",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@graphql-tools/load-files": "^6.2.7",
+    "@graphql-tools/merge": "^6.2.10",
     "apollo-server": "^2.21.0",
     "dotenv": "^8.2.0",
     "graphql": "^15.5.0",
-    "neo4j-driver": "^4.2.2",
-    "neo4j-graphql-js": "^2.19.2"
+    "neo4j-driver": "^4.2.2"
   },
   "scripts": {
     "start": "tsc && node ./build/index.js",
