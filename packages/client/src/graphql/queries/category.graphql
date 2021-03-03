@@ -1,0 +1,13 @@
+query Categories {
+  categories {
+    value
+  }
+}
+
+query ProductsInCategories($categories: [String]!) {
+  productsInCategories(names: $categories) {
+    id
+    name
+    description
+  }
+}

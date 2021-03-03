@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import useProducts from "../queries/useProducts";
+import React, { useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { Button } from "@shopify/polaris";
 import styled from "styled-components";
 import Loader from "../components/Loader";
+import { useProductsQuery } from "../generated/graphql";
 
 const Root = styled.div`
   width: 100%;
@@ -19,7 +19,7 @@ const Section = styled.div`
 `;
 
 const Explore: React.FC<{}> = () => {
-  const { data, loading, error, fetchMore } = useProducts();
+  const { data, loading, error, fetchMore } = useProductsQuery();
   const [loadingMore, setLoadingMore] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
 
@@ -49,13 +49,15 @@ const Explore: React.FC<{}> = () => {
       <Content>
         <Section>
           {data &&
-            data.products.products.map((product) => (
-              <ProductCard
-                id={product.id}
-                name={product.name}
-                description={product.description}
-              />
-            ))}
+            data.products.products.map((product) =>
+              product?.id ? (
+                <ProductCard
+                  id={product.id}
+                  name={product.name}
+                  description={product.description}
+                />
+              ) : null
+            )}
         </Section>
         <Section>
           <Button primary loading={loadingMore} onClick={loadMore}>

@@ -1,5 +1,4 @@
 import React, { useMemo, useState, useCallback, useEffect } from "react";
-import { gql, useQuery } from "@apollo/client";
 import {
   Autocomplete,
   TextContainer,
@@ -10,28 +9,17 @@ import {
 } from "@shopify/polaris";
 import { OptionDescriptor } from "@shopify/polaris/dist/types/latest/src/components/OptionList/OptionList";
 import RecommendedProducts from "./RecommendedProducts";
-
-interface Data {
-  categories: { value: string }[];
-}
-
-const GET_CATEGORIES = gql`
-  query GetCategories {
-    categories {
-      value
-    }
-  }
-`;
+import { useCategoriesQuery } from "../../generated/graphql";
 
 const Categories: React.FC<{}> = () => {
-  const { data, loading } = useQuery<Data>(GET_CATEGORIES);
+  const { data, loading } = useCategoriesQuery();
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState("");
   const deselectedOptions = useMemo(() => {
     return (
       data?.categories.map((category) => ({
-        value: category.value,
-        label: category.value,
+        value: category?.value || "",
+        label: category?.value || "",
       })) || []
     );
   }, [data]);

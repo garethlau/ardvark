@@ -1,0 +1,30 @@
+query Product($id: String!) {
+  product(id: $id) {
+    id
+    name
+    description
+    price
+    categories {
+      value
+    }
+    manufacturer {
+      value
+    }
+    similar {
+      id
+      name
+      description
+    }
+  }
+}
+
+query Products($limit: Int, $skip: Int) {
+  products(limit: $limit, skip: $skip) {
+    hasMore
+    products {
+      id
+      name
+      description
+    }
+  }
+}
