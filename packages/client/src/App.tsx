@@ -49,11 +49,8 @@ const App: React.FC<{}> = () => {
         <Router>
           <Switch>
             <Route path="/product/:productId" component={Product} />
-            <Route path="/explore" component={Explore} />
             <Route path="/categories" component={Categories} />
-            <Route>
-              <div>Home</div>
-            </Route>
+            <Route path="/" exact component={Explore} />
           </Switch>
         </Router>
       </AppProvider>
