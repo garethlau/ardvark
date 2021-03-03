@@ -6,14 +6,14 @@ interface Product {
   description: string;
 }
 
-interface ProductsData {
+interface Data {
   products: {
     products: Product[];
     hasMore: boolean;
   };
 }
 
-interface ProductsVars {
+interface Vars {
   skip: number;
   limit: number;
 }
@@ -32,7 +32,7 @@ const GET_PRODUCTS = gql`
 `;
 
 export default function useProducts() {
-  return useQuery<ProductsData, ProductsVars>(GET_PRODUCTS, {
+  return useQuery<Data, Vars>(GET_PRODUCTS, {
     variables: {
       skip: 0,
       limit: 10,

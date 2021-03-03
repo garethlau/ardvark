@@ -12,11 +12,11 @@ export interface Product {
   similar: { id: string; name: string; description: string }[];
 }
 
-interface ProductData {
+interface Data {
   product: Product;
 }
 
-export interface ProductVars {
+interface Vars {
   id: string;
 }
 
@@ -43,7 +43,7 @@ const GET_PRODUCT = gql`
 `;
 
 export default function useProduct(productId: string) {
-  return useQuery<ProductData, ProductVars>(GET_PRODUCT, {
+  return useQuery<Data, Vars>(GET_PRODUCT, {
     variables: {
       id: productId,
     },
