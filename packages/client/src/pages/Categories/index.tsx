@@ -89,7 +89,6 @@ const Categories: React.FC<{}> = () => {
         loading={loading}
       />
       <br />
-      <Heading element="h1">Results</Heading>
       <RecommendedProducts categories={selectedOptions} />
     </Page>
   );
